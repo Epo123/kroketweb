@@ -12,4 +12,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'kroket.views.index', name='home'),
+    url(r'^assortiment$', 'kroket.views.assortiment', name='assortiment'),
+    url(r'^afrekenen$', 'kroket.views.afrekenen', name='afrekenen'),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

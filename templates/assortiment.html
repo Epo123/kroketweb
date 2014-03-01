@@ -1,19 +1,31 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load staticfiles %}
 <html> 
 <head>
     <meta charset="UTF-8"/>
     <title>Welkom bij KroketWeb - Bestel je vette hap online</title>
-    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <link href="{% static "kroket/default.css" %}" rel="stylesheet" type="text/css"/>
+    <script src="{% static "kroket/assortiment.js" %}" type="javascript"></script>
+    <script>
+        function hasBlurred(obj) {
+            if(!obj.value.match(/^\d+$/)) {
+                obj.value = "";
+                alert("klopt niet!");
+            } else {
+                var avalue = document.getElementById('price');
+                avalue.innerHTML = (obj.value * 9.9).toFixed(2);
+            }
+        }
+    </script>
 </head>
 
 <body>
-<img src="images/logo.jpg">
+<img src="{% static "kroket/logo.jpg" %}">
 
 <nav>
     <span class="sponsortitle"> Menu </span><br><br>
-    <a href="index.html">Home</a><br>
-    <a href="assortiment.html"><b>Assortiment</b></a><br>
-    <a href="afrekenen.html">Afrekenen</a>
+    <a href="{% url 'home' %}">Home</a><br>
+    <a href="{% url 'assortiment' %}"><b>Assortiment</b></a><br>
+    <a href="{% url 'afrekenen' %}">Afrekenen</a>
 </nav>
 
 <div class="middle">
@@ -29,81 +41,87 @@
             <th>Bestelling</th>
         </tr>
         <tr>
-
             <td>Wiener Schnietzelschotel</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Tosti Hawaii</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Tosti Ham/kaas</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Spa rood</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Snickers</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Portie satehsaus</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Portie raspata</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Patat oorlog</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Portie mayonaise</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Portie bitterballen</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
         </tr>
 
         <tr>
             <td>Falafel</td>
             <td>9,90</td>
             <td>Ja</td>
-            <td><input type="text" size="3"/>
+            <td><input type="text" size="3" onblur="hasBlurred(this)" class="digitsOnly"/>
+        </tr>
+
+        <tr>
+            <td>Totaal prijs</td>
+            <td></td>
+            <td></td>
+            <td><div id="price"></div></td>
         </tr>
 
     </table>
@@ -146,6 +164,78 @@
             <th>Aantal</th>
             <th>Prijs per stuk</th>
             <th>Totaalprijs</th>
+        </tr>
+        <tr>
+            <td>Wiener Schnietzelschotel</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Tosti Hawaii</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Tosti Ham/kaas</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Spa rood</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Snickers</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Portie satehsaus</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Portie raspata</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Patat oorlog</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Patat oorlog</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Portie mayonaise</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Portie bitterballen</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Falafel</td>
+            <td></td>
+            <td>9,90</td>
+            <td></td>
         </tr>
     </table>
 </div>

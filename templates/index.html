@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Welkom bij KroketWeb - Bestel je vette hap online</title>
-    <link href="{%  static default.css %}" rel="stylesheet" type="text/css"/>
+    <link href="{%  static "kroket/default.css" %}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -11,9 +11,9 @@
 
 <nav>
     <span class="sponsortitle"> Menu </span><br><br>
-    <a href="index.html"><b>Home</b></a><br>
-    <a href="assortiment.html">Assortiment</a><br>
-    <a href="afrekenen.html">Afrekenen</a>
+    <a href="{% url 'home' %}"><b>Home</b></a><br>
+    <a href="{% url 'assortiment' %}">Assortiment</a><br>
+    <a href="{% url 'afrekenen' %}">Afrekenen</a>
 </nav>
 
 <div class="middle">
@@ -23,7 +23,7 @@
         <p>Sommige Nederlandse snackbars hebben een automatiek, waar men het klaarliggende gerecht na inwerpen van het juiste bedrag uit een vakje kan nemen. Bij onze site kan dat vierentwintig uur per dag, zeven dagen in de week!</p>
         <p>Nederland telde op het hoogtepunt circa 6000 snackbars en cafetaria's. Na 1997 zette de daling in. In 2010 telde Nederland nog ruim 4900 snackbars en cafetaria's. Het gaat hierbij om inpandige bedrijven; mobiele snackbars en kramen met een vaste standplaats maar zonder zitgelegenheid zijn niet meegerekend. De laatste tijd staan snackbars in Nederland in een kwaad daglicht vanwege het vaste frituurvet waarin de snacks en friet vaak gebakken worden. Daarom is de campagne Verantwoord Frituren gestart, om het gebruik van vloeibaar (gezonder) frituurvet te stimuleren.</p>
     </div>
-    <img src="images/Kroket.jpg" alt="">
+    <img src="{% static "kroket/Kroket.jpg" %}" alt="">
 </div>
 
 <div class="right weirdlink">
