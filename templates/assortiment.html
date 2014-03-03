@@ -25,7 +25,6 @@
             for(var i = 1; i < 12; i++) {
                 if(document.getElementById('a'+i).value != "") {
 
-
                     var row = table.insertRow(1);
 
                     var cell1 = row.insertCell(0);
@@ -35,7 +34,7 @@
 
                     cell1.innerHTML = document.getElementById(i).innerHTML;
                     cell2.innerHTML = document.getElementById("a"+i).value;
-                    cell3.innerHTML = "9,90";
+                    cell3.innerHTML = '9,90' + '<input type="hidden" value="'+document.getElementById(i).innerHTML+'" name="artname[]"><input type="hidden" value="' + document.getElementById('a'+i).value + '" name="artquant[]">';
                     cell4.innerHTML = (document.getElementById("a"+i).value * 9.9).toFixed(2);
 
                     totalprice = parseFloat((document.getElementById("a"+i).value) *9.9) + totalprice;
@@ -186,6 +185,7 @@
 
 
     <h3>Inhoud winkelmandje</h3>
+    <form action="{% url 'afrekenen' %}" method="post">
     <table id="shopcart">
         <tr>
             <th>Artikel</th>
@@ -194,6 +194,8 @@
             <th>Totaalprijs</th>
         </tr>
     </table>
+        <input type="submit">
+</form>
 </div>
 
 </body>

@@ -19,7 +19,6 @@
 
 <div class="middle">
     <h3>Afrekenen</h3>
-    <form>
         <fieldset>
             <legend>Inhoud winkelwagen</legend>
             <table>
@@ -29,36 +28,47 @@
                     <th>Prijs per stuk</th>
                     <th>Totaalprijs</th>
                 </tr>
+                {% for item in cart %}
+                    {% with temp=forloop.counter %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>9,90</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+                    {% endwith %}
+                {% endfor %}
             </table>
         </fieldset>
-
         <br/>
  
         <fieldset><legend>Bezorggegevens</legend>
+            <form>
             <table>
                 <tr>
-                    <td>Naam</td>
-                    <td><input type="text" name="myInput" size="20"></td>
+                    <td><label for="shipping_name">Naam</label></td>
+                    <td><input id="shipping_name" type="text" name="shipping_name" size="20" required></td>
                 </tr>
 
                 <tr>
-                    <td>Straat + nr</td>
-                    <td><input type="text" name="myInput2" size="20"></td>
+                    <td><label for="shipping_address">Straat + nr</label></td>
+                    <td><input id="shipping_address" type="text" name="shipping_address" size="20" required></td>
                 </tr>
   
                 <tr>
-                    <td>Plaats</td>
-                    <td><input type="text" name="myInput3" size="20"></td>
+                    <td><label for="shipping_city">Plaats</label></td>
+                    <td><input id="shipping_city" type="text" name="shipping_city" size="20" required></td>
                 </tr>
 
                 <tr>
-                    <td>Telefoonnummer</td>
-                    <td><input type="text" maxlength=10 name="area"></td>
+                    <td><label for="shipping_phonenumber">Telefoonnummer</td>
+                    <td><input id="shipping_phonenumber" type="text" maxlength=10 name="shipping_phonenumber" required></td>
                 </tr>
             </table>
-        </fieldset><br/>
+        </fieldset>
+    <br/>
 
-        <input type="button" value="Plaats bestelling"/>
+        <input type="submit" value="Plaats bestelling"/>
     </form>
 </div>
 
