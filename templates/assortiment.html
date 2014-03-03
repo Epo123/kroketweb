@@ -15,6 +15,7 @@
             }
 
             var table = document.getElementById("shopcart");
+            var articletable = document.getElementById("article_table");
 
             while(table.rows.length != 1) {
                 table.deleteRow(1);
@@ -22,7 +23,7 @@
 
             var totalprice = 0;
 
-            for(var i = 1; i < 12; i++) {
+            for(var i = 1; i < articletable.rows.length-1; i++) {
                 if(document.getElementById('a'+i).value != "") {
 
                     var row = table.insertRow(1);
@@ -32,12 +33,12 @@
                     var cell3 = row.insertCell(2);
                     var cell4 = row.insertCell(3);
 
-                    cell1.innerHTML = document.getElementById(i).innerHTML;
-                    cell2.innerHTML = document.getElementById("a"+i).value;
-                    cell3.innerHTML = '9,90' + '<input type="hidden" value="'+document.getElementById(i).innerHTML+'" name="artname[]"><input type="hidden" value="' + document.getElementById('a'+i).value + '" name="artquant[]">';
-                    cell4.innerHTML = (document.getElementById("a"+i).value * 9.9).toFixed(2);
+                    cell1.innerHTML = document.getElementById(i).innerHTML + '<input type="hidden" value="'+document.getElementById(i).innerHTML+'" name="artname[]">';
+                    cell2.innerHTML = document.getElementById("a"+i).value + '<input type="hidden" value="' + document.getElementById('a'+i).value + '" name="artquant[]">';
+                    cell3.innerHTML = document.getElementById("p"+i).innerHTML + '<input type="hidden" value="' + document.getElementById('p'+i).innerHTML+'" name="artprice[]">';
+                    cell4.innerHTML = (document.getElementById("a"+i).value * document.getElementById("p"+i).innerHTML).toFixed(2);
 
-                    totalprice = parseFloat((document.getElementById("a"+i).value) *9.9) + totalprice;
+                    totalprice = parseFloat((document.getElementById("a"+i).value) * document.getElementById("p"+i).innerHTML) + totalprice;
                 }
             }
             avalue.innerHTML = totalprice.toFixed(2);
@@ -60,89 +61,22 @@
 
     <div id="berichtenNavigatie">
     </div>
-    <table class="alternatingrow">
+    <table class="alternatingrow" id="article_table">
         <tr>
             <th>Product</th>
             <th>Prijs (euro)</th>
             <th>Op voorraad</th>
             <th>Bestelling</th>
         </tr>
-        <tr>
-            <td id="1">Wiener Schnietzelschotel</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 1)" id="a1"/>
-        </tr>
 
-        <tr>
-            <td id="2">Tosti Hawaii</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 2)" id="a2"/>
-        </tr>
-
-        <tr>
-            <td id="3">Tosti Ham/kaas</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 3)" id="a3"/>
-        </tr>
-
-        <tr>
-            <td id="4">Spa rood</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 4)" id="a4"/>
-        </tr>
-
-        <tr>
-            <td id="5">Snickers</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 5)" id="a5"/>
-        </tr>
-
-        <tr>
-            <td id="6">Portie satehsaus</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 6)" id="a6"/>
-        </tr>
-
-        <tr>
-            <td id="7">Portie raspata</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 7)" id="a7"/>
-        </tr>
-
-        <tr>
-            <td id="8">Patat oorlog</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 8)" id="a8"/>
-        </tr>
-
-        <tr>
-            <td id="9">Portie mayonaise</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 9)" id="a9"/>
-        </tr>
-
-        <tr>
-            <td id="10">Portie bitterballen</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 10)" id="a10"/>
-        </tr>
-
-        <tr>
-            <td id="11">Falafel</td>
-            <td>9,90</td>
-            <td>Ja</td>
-            <td><input type="text" size="3" onblur="hasBlurred(this, 11)" id="a11"/>
-        </tr>
+        {% for article in all_articles %}
+            <tr>
+                <td id="{{ article.0 }}">{{ article.1 }}</td>
+                <td id="p{{ article.0 }}">{{ article.3 }}</td>
+                <td>{{ article.2 }}</td>
+                <td><input type="text" size="3" onblur="hasBlurred(this, {{ article.0 }})" id="a{{ article.0 }}" {% if article.2 == 0 %}disabled{% endif %}></td>
+            </tr>
+        {% endfor %}
 
         <tr>
             <td>Totaal prijs</td>

@@ -19,6 +19,7 @@
 
 <div class="middle">
     <h3>Afrekenen</h3>
+    <form action="{% url 'home' %}" method="post">
         <fieldset>
             <legend>Inhoud winkelwagen</legend>
             <table>
@@ -29,21 +30,19 @@
                     <th>Totaalprijs</th>
                 </tr>
                 {% for item in cart %}
-                    {% with temp=forloop.counter %}
                 <tr>
                     <td>{{ item.name }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td>9,90</td>
                     <td>{{ item.price }}</td>
+                    <td>{{ item.total_price }}</td>
                 </tr>
-                    {% endwith %}
                 {% endfor %}
             </table>
         </fieldset>
         <br/>
  
         <fieldset><legend>Bezorggegevens</legend>
-            <form>
+
             <table>
                 <tr>
                     <td><label for="shipping_name">Naam</label></td>
@@ -61,7 +60,7 @@
                 </tr>
 
                 <tr>
-                    <td><label for="shipping_phonenumber">Telefoonnummer</td>
+                    <td><label for="shipping_phonenumber">Telefoonnummer</label></td>
                     <td><input id="shipping_phonenumber" type="text" maxlength=10 name="shipping_phonenumber" required></td>
                 </tr>
             </table>
