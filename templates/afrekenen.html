@@ -31,7 +31,7 @@
                 </tr>
                 {% for item in cart %}
                 <tr>
-                    <td>{{ item.name }}</td>
+                    <td>{{ item.name }}<input type="hidden" name="article_ids[]" value="{{ item.id }}"></td>
                     <td>{{ item.quantity }}</td>
                     <td>{{ item.price }}</td>
                     <td>{{ item.total_price }}</td>

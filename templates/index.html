@@ -4,6 +4,11 @@
     <meta charset="UTF-8"/>
     <title>Welkom bij KroketWeb - Bestel je vette hap online</title>
     <link href="{%  static "kroket/default.css" %}" rel="stylesheet" type="text/css"/>
+    <script>
+        if ("{{ besteld }}" != '') {
+            alert('{{ besteld }}');
+        }
+    </script>
 </head>
 
 <body>

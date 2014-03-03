@@ -36,7 +36,7 @@
                     cell1.innerHTML = document.getElementById(i).innerHTML + '<input type="hidden" value="'+document.getElementById(i).innerHTML+'" name="artname[]">';
                     cell2.innerHTML = document.getElementById("a"+i).value + '<input type="hidden" value="' + document.getElementById('a'+i).value + '" name="artquant[]">';
                     cell3.innerHTML = document.getElementById("p"+i).innerHTML + '<input type="hidden" value="' + document.getElementById('p'+i).innerHTML+'" name="artprice[]">';
-                    cell4.innerHTML = (document.getElementById("a"+i).value * document.getElementById("p"+i).innerHTML).toFixed(2);
+                    cell4.innerHTML = (document.getElementById("a"+i).value * document.getElementById("p"+i).innerHTML).toFixed(2) + '<input type="hidden" value="'+i+'" name="artid[]">';
 
                     totalprice = parseFloat((document.getElementById("a"+i).value) * document.getElementById("p"+i).innerHTML) + totalprice;
                 }
